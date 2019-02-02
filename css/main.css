@@ -1,0 +1,48 @@
+
+body {
+    font-family: 'Lato', sans-serif;
+
+}
+
+.card {
+    border-radius: 0;
+}
+
+.flat-p-form .p-has-icon .form-control {
+    position: relative;
+    z-index: 1;
+}
+
+
+.btn{border-radius:0;     padding: 0.485rem .75rem;}
+
+.irs--flat .irs-from:before, .irs--flat .irs-to:before, .irs--flat .irs-single:before{
+ 
+    border-top-color: #525252;
+}
+
+
+ .irs--flat .irs-from, .irs--flat .irs-to, .irs--flat .irs-single, .irs--flat .irs-bar, .irs--flat .irs-handle>i:first-child {
+ 
+    background-color: #525252;
+}
+@media (max-width: 768px){
+.sorting-control {
+    /* padding-left: 15px; */
+    padding-right: 15px;
+}
+#PopUp {
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    right:0;
+    z-index:4
+}
+#PopUp .card-body {
+    overflow: auto;
+    height: calc(100vh - 25px);
+}
+#PopUp.active {
+    display: block !important;
+}}

@@ -1,0 +1,231 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Hotel App</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet" />
+    <link href="css/forms-plus.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet">
+</head>
+
+<body class="flat-p-form dx-viewport" ng-app="HotelApp">
+
+    <header class="p-3 border-bottom mb-5">
+        <div class="container">
+            <div class="clearfix text-center">
+                <div class="float-sm-left mb-sm-0 mb-3">
+
+                    <a href="index.html">
+                        <img src="img/logo.png" />
+                    </a>
+
+
+                </div>
+                <div class="float-sm-right">
+
+                    <button type="button" class="btn btn-dark">login or Regester</button>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </header>
+
+
+    <div class="body-container" ng-controller="HotelCtrl as ctrl">
+
+
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card bg-light text-dark mb-4 d-none d-md-block" id="PopUp">
+                        <div class="card-header d-block d-md-none">
+                            <button type="button" class="PopUpClose btn p-0">
+                                <i class="fas fa-times"></i>
+                            </button>
+
+                        </div>
+                        <div class="card-body">
+
+                            <div class="sort-block mb-2pb-2 border-bottom p-3">
+                                <div class="form-group">
+                                    <div class="input-group  p-has-icon">
+                                        <input type="search" id="search1" name="search1" placeholder="Search By Name" class="form-control" ng-model="ctrl.filterByName">
+                                        <span class="input-group-state">
+                                            <span class="p-position">
+
+                                            </span>
+                                        </span>
+                                        <span class="p-field-cb"></span>
+                                        <span class="input-group-icon"><i class="fa fa-search"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sort-block mb-2pb-2 border-bottom p-3">
+                                <h6 class="mb-2">Price</h6>
+                                <div dx-range-selector="rangeSelectorOptions"></div>
+                            </div>
+
+                            <div class="sort-block mb-2pb-2 p-3">
+                                <h6 class="mb-2">Star rating</h6>
+
+
+
+                                <div class="checkbox mb-3">
+                                    <label>
+
+                                        <input type="checkbox" name="StarRatsing" ng-model="ctrl.filter[1]">
+                                        <span class="p-check-icon">
+                                            <span class="p-check-block"></span>
+                                        </span>
+                                        <span class="p-label">1 stars</span>
+                                    </label>
+                                </div>
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="StarRating" ng-model="ctrl.filter[2]">
+                                        <span class="p-check-icon">
+                                            <span class="p-check-block"></span>
+                                        </span>
+                                        <span class="p-label">2 stars</span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="StarRating" ng-model="ctrl.filter[3]">
+                                        <span class="p-check-icon">
+                                            <span class="p-check-block"></span>
+                                        </span>
+                                        <span class="p-label">3 stars</span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="StarRating" ng-model="ctrl.filter[4]">
+                                        <span class="p-check-icon">
+                                            <span class="p-check-block"></span>
+                                        </span>
+                                        <span class="p-label">4 stars</span>
+                                    </label>
+                                </div>
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="StarRating" ng-model="ctrl.filter[5]">
+                                        <span class="p-check-icon">
+                                            <span class="p-check-block"></span>
+                                        </span>
+                                        <span class="p-label">5 stars</span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+                    <div class="sorting-control">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+
+                                    <div class="input-group  p-has-icon">
+                                        <select id="sortBy" name="sortBy" ng-model="order" class="form-control">
+                                            <option selected value="">--Sort by--</option>
+
+                                            <option value="price">Price (low to high)</option>
+                                            <option value="-price">Price (high to low)</option>
+                                            <option value="star">Star (low to high)</option>
+                                            <option value="-star">Star (high to low)</option>
+                                        </select>                                <span class="input-group-state">
+                                            <span class="p-position">
+
+                                            </span>
+                                        </span>
+                                        <span class="p-field-cb"></span>
+                                        <span class="input-group-icon"><i class="fas fa-sort-amount-down"></i></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-xs-3 d-block d-md-none">
+                                <button id="PopUpBtn" type="button" class="btn btn-dark">Search and fliter</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div ng-repeat="hotel in (hotels | filter:ctrl.filterBystar | filter:ctrl.filterByName |  orderBy: order )">
+                        <div class="card bg-light text-dark hotel-item mb-3">
+                            <div class="card-body p-md-0">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img class="w-100 " src="img/placeholder.png" />
+                                    </div>
+
+                                    <div class="col-md-10 p-3">
+                                        <h5 class="d-inline-block mr-2">  {{ hotel.name }} </h5><ul class="p-0 d-inline-block">
+                                            <li class="d-inline-block" ng-repeat="i in getNumber (hotel.star) track by $index"><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <div class="price text-success ">{{ hotel.price }} $ </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/dx.all.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
